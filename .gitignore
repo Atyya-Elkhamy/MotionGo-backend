@@ -1,2 +1,6 @@
 .venv
 **/.venv/
+# Migrations (optional: if you don't want to track auto-generated migrations)
+**/migrations/*
+**/pycache/*
+!**/migrations/__init__.py
