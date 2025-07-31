@@ -15,7 +15,7 @@ from django.contrib.auth.hashers import check_password
 from rest_framework.permissions import IsAuthenticated
 from .serializers import UserSerializer
 from .models import User
-
+from django.core.mail import EmailMultiAlternatives
 User = get_user_model()
 
 
@@ -146,12 +146,25 @@ class GoogleAuthView(APIView):
 # ------------------- OTP Email -------------------
 
 def send_otp_email(email, otp, message):
+    # subject = 'Your OTP Code'
+    # full_message = f'{message} : {otp}'
+    # from_email = settings.EMAIL_HOST_USER
+    # recipient_list = [email]
+    # return send_mail(subject, full_message, from_email, recipient_list)
     subject = 'Your OTP Code'
-    full_message = f'{message} : {otp}'
-    from_email = settings.EMAIL_HOST_USER
+    from_email = settings.DEFAULT_FROM_EMAIL
+    message='Your OTP to Change Password Is '
     recipient_list = [email]
-    return send_mail(subject, full_message, from_email, recipient_list)
+    text_content = f'{message}: {otp}'
+    html_content = f"""
+        <p>{message}:</p>
+        <h2 style="color:#2E86C1;">{otp}</h2>
+        <p>This OTP is valid for 10 minutes.</p>
+        """
 
+    msg = EmailMultiAlternatives(subject, text_content, from_email, recipient_list)
+    msg.attach_alternative(html_content, "text/html")
+    return msg.send()
 
 class SendOTPView(APIView):
     permission_classes = [AllowAny]
