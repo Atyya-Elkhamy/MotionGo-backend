@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'atia_motiongo',
         'USER': 'atia_atia',
         'PASSWORD': 'motiongo@12345678',
-        'PORT': '5432',
+        'PORT': '3306',
         'HOST': 'localhost',
     }
 }
