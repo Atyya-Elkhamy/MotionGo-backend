@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # PostgreSQL database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'profile',
-        'USER': 'postgres',
-        'PASSWORD': 'Qv3DJ105!vxsf;`%',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'atia_motiongo',
+        'USER': 'atia_atia',
+        'PASSWORD': 'motiongo@12345678',
         'PORT': '5432',
         'HOST': 'localhost',
     }
